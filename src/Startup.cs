@@ -69,10 +69,6 @@ namespace okta_dotnetcore_react_example
                     name: "api",
                     template: "api/{controller=Default}/{action=Index}/{id?}");
 
-                //routes.MapRoute(
-                //    name: "api-doc",
-                //    template: "");
-
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
                     defaults: new
