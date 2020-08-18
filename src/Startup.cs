@@ -19,6 +19,9 @@ namespace okta_dotnetcore_react_example
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
+
             services.AddMvc(a => { a.EnableEndpointRouting = false; });
         }
 
@@ -43,24 +46,42 @@ namespace okta_dotnetcore_react_example
 
             app.UseStaticFiles();
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+
+                // Load by going to URL <root>/api-doc
+                c.RoutePrefix = "api-doc";
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                name: "default",
-                template: "Home/{action=Index}/{id?}");
+                    name: "default",
+                    template: "Home/{action=Index}/{id?}");
 
                 routes.MapRoute(
-                name: "api",
-                template: "api/{controller=Default}/{action=Index}/{id?}");
+                    name: "api",
+                    template: "api/{controller=Default}/{action=Index}/{id?}");
+
+                //routes.MapRoute(
+                //    name: "api-doc",
+                //    template: "");
 
                 routes.MapSpaFallbackRoute(
-                name: "spa-fallback",
-                defaults: new
-                {
-                    controller = "Home",
-                    action = "Index"
-                });
+                    name: "spa-fallback",
+                    defaults: new
+                    {
+                        controller = "Home",
+                        action = "Index"
+                    });
             });
+
         }
     }
 }
