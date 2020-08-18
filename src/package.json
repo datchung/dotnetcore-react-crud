@@ -1,5 +1,5 @@
 {
-  "name": "okta-dotnetcore-react-example",
+  "name": "dotnetcore-react-crud",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
