@@ -1,24 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace okta_dotnetcore_react_example.Controllers
+namespace DotNetCoreReactCrud.Controllers
 {
-    public class NotesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class NotesController : ControllerBase
     {
-        public async Task<IActionResult> Index()
+        // GET: api/Notes
+        [HttpGet]
+        public IEnumerable<dynamic> Get()
         {
-            var notes = new []{
+            return new[]{
                 new {
-                    User = "leebrandt",
-                    Message = "Remember to do something"
+                    User = "UserA",
+                    Message = "Note from user A"
                 },
                 new {
-                    User = "leebrandt",
-                    Message = "Working hard, man!"
+                    User = "UserB",
+                    Message = "Note from user B"
                 }
             };
-
-            return Ok(notes);
         }
     }
 }

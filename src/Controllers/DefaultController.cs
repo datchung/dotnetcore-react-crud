@@ -1,17 +1,20 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace okta_dotnetcore_react_example.Controllers
+namespace DotNetCoreReactCrud.Controllers
 {
-    public class DefaultController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DefaultController : ControllerBase
     {
-        public async Task<IActionResult> Index()
+        // GET: api/Default
+        [HttpGet]
+        public dynamic Get()
         {
-            var data = new {
+            return new
+            {
                 name = "Simple React API",
                 href = $"http://{Request.Host}{Request.Path}"
             };
-            return Ok(data);
         }
     }
 }
