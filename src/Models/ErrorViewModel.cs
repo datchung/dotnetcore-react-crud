@@ -1,6 +1,4 @@
-using System;
-
-namespace okta_dotnetcore_react_example.Models
+namespace DotNetCoreReactCrud.Models
 {
     public class ErrorViewModel
     {

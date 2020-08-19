@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DotNetCoreReactCrud.Models;
 using Microsoft.AspNetCore.Mvc;
-using okta_dotnetcore_react_example.Models;
+using System.Diagnostics;
 
-namespace okta_dotnetcore_react_example.Controllers
+namespace DotNetCoreReactCrud.Controllers
 {
     public class HomeController : Controller
     {
