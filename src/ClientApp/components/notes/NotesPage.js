@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 export default class NotesPage extends React.Component{
@@ -19,10 +20,11 @@ export default class NotesPage extends React.Component{
     return (
       <section>
         <h1>My Notes</h1>
+        <Link to="/create-note" className="btn btn-primary">Create a Note</Link>
         <ul>
           {
             this.state.notes.map(note => {
-              return <li>{note.message}</li>;
+                return <li key={note.noteId}>{note.message}</li>;
             })
           }
         </ul>
