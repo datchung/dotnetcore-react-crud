@@ -15,8 +15,8 @@ render(
       <Route exact path="/" component={HomePage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/about" component={AboutPage} />
-      <Route path="/notes" component={NotesPage} />
-      <Route path="/create-note" component={CreateNotePage} />
+      <Route exact path="/notes" component={NotesPage} />
+      <Route path="/notes/create" component={CreateNotePage} />
     </Layout>
   </BrowserRouter>,
   document.getElementById('app')

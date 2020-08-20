@@ -20,7 +20,7 @@ export default class NotesPage extends React.Component{
     return (
       <section>
         <h1>My Notes</h1>
-        <Link to="/create-note" className="btn btn-primary">Create a Note</Link>
+        <Link to="/notes/create" className="btn btn-primary">Create a Note</Link>
         <ul>
           {
             this.state.notes.map(note => {
