@@ -7,7 +7,7 @@ import HomePage from './components/home/HomePage';
 import ContactPage from './components/contact/ContactPage';
 import AboutPage from './components/about/AboutPage';
 import NotesPage from './components/notes/NotesPage';
-import CreateNotePage from './components/notes/CreateNotePage';
+import CreateUpdateNotePage from './components/notes/CreateUpdateNotePage';
 
 render(
   <BrowserRouter>
@@ -16,7 +16,8 @@ render(
       <Route path="/contact" component={ContactPage} />
       <Route path="/about" component={AboutPage} />
       <Route exact path="/notes" component={NotesPage} />
-      <Route path="/notes/create" component={CreateNotePage} />
+      <Route exact path="/notes/create" component={CreateUpdateNotePage} />
+      <Route exact path="/notes/update/:noteId" component={CreateUpdateNotePage} />
     </Layout>
   </BrowserRouter>,
   document.getElementById('app')

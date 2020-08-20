@@ -24,7 +24,11 @@ export default class NotesPage extends React.Component{
         <ul>
           {
             this.state.notes.map(note => {
-                return <li key={note.noteId}>{note.message}</li>;
+              return <li key={note.noteId}>
+                <Link to={`/notes/update/${note.noteId}`}>
+                  {note.message}
+                </Link>
+              </li>;
             })
           }
         </ul>

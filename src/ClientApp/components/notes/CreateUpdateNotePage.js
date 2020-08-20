@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class CreateNotePage extends React.Component {
+class CreateUpdateNotePage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,7 +13,14 @@ class CreateNotePage extends React.Component {
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
+        this.loadNote = this.loadNote.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+      if (this.props.match.params.noteId) {
+        this.loadNote();
+      }
     }
 
     handleUserChange(e) {
@@ -24,18 +31,34 @@ class CreateNotePage extends React.Component {
         this.setState({ message: e.target.value });
     }
 
+    async loadNote() {
+      fetch(`/api/notes/${this.props.match.params.noteId}`)
+      .then(rsp => rsp.json())
+      .then(note => {
+        this.setState(Object.assign({}, this.state, note));
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
+
     async handleSubmit(e) {
         e.preventDefault();
-        fetch('/api/notes', {
+
+      var noteId = this.props.match.params.noteId;
+      var url = noteId ? `/api/notes/${noteId}` : '/api/notes';
+      var method = noteId ? 'PUT' : 'POST';
+
+        fetch(url, {
             body: JSON.stringify(this.state),
             cache: 'no-cache',
             headers: {
                 'content-type': 'application/json'
             },
-            method: 'POST'
+            method: method
         })
             .then(rsp => {
-                if (rsp.status === 201) {
+                if (rsp.status === 201 || rsp.status === 204) {
                     this.props.history.push('/notes');
                 }
             })
@@ -50,7 +73,7 @@ class CreateNotePage extends React.Component {
         }
         return (
             <section>
-                <h1>Create a Note</h1>
+            <h1>{this.props.match.params.noteId ? 'Update Note' : 'Create a Note'}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-element">
                         <label>User</label>
@@ -78,4 +101,4 @@ class CreateNotePage extends React.Component {
 
 };
 
-export default withRouter(CreateNotePage);
+export default withRouter(CreateUpdateNotePage);
