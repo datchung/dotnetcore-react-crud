@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
 
 export default class NotesPage extends React.Component {
   constructor() {
@@ -9,11 +8,14 @@ export default class NotesPage extends React.Component {
   }
 
   componentDidMount() {
-    $.get("/api/notes")
-      .done((data) => {
-        this.setState({ notes: data });
+    fetch("/api/notes")
+      .then(rsp => rsp.json())
+      .then(notes => {
+        this.setState({ notes: notes });
       })
-      .fail(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
