@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
-export default class NotesPage extends React.Component{
-  constructor(){
+export default class NotesPage extends React.Component {
+  constructor() {
     super();
     this.state = { notes: [] };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     $.get("/api/notes")
       .done((data) => {
         this.setState({ notes: data });
