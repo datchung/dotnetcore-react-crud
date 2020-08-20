@@ -2,27 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navigation = (props) => {
+  function toggleBurgerMenu() {
+    document.querySelector('.navbar-menu').classList.toggle('is-active');
+  }
+
   return (
-    <div className="navbar navbar-inverse navbar-fixed-top">
-      <div className="container">
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span className="sr-only">Toggle navigation</span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
-          <Link to="/" className="navbar-brand">React App</Link>
-        </div>
-        <div className="navbar-collapse collapse">
-          <ul className="nav navbar-nav">
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/notes">Notes</Link></li>
-          </ul>
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <Link to="/" className="navbar-item">React App</Link>
+
+        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic"
+          onClick={toggleBurgerMenu}>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasic" className="navbar-menu">
+        <div className="navbar-start">
+          <Link to="/about" className="navbar-item" onClick={toggleBurgerMenu}>About</Link>
+          <Link to="/contact" className="navbar-item" onClick={toggleBurgerMenu}>Contact</Link>
+          <Link to="/notes" className="navbar-item" onClick={toggleBurgerMenu}>Notes</Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 
